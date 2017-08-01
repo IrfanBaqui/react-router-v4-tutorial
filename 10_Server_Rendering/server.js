@@ -1,6 +1,4 @@
-require('babel-core/register')({
-  presets: ['es2015', 'react'],
-});
+require('babel-core/register')({});
 
 //Adding a Development Server
 var webpack = require('webpack')

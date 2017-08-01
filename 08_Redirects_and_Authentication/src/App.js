@@ -1,33 +1,35 @@
 import ReactDOM from 'react-dom'
-import React, { Component } from 'react'
-import { BrowserRouter, Match, Link, Redirect } from 'react-router'
+import React from 'react'
+import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom'
+import { Redirect } from 'react-router'
+import { Home, BasicRouting, Blocking, Miss, QueryParams, Recursive, Login, Protected, NoMatch } from './Components'
 import fakeAuth from './Auth'
-import { Home, BasicRouting, Blocking, Miss, QueryParams, Recursive, Protected, Login } from './Components'
 
 ReactDOM.render(
   <BrowserRouter>
     <div>
       <ul>
-        <li><Link to="/" activeOnlyWhenExact activeClassName="active">Home</Link></li>
-        <li><Link to="/basic-routing" activeClassName="active">BasicRouting</Link></li>
-        <li><Link to="/blocking" activeClassName="active">Blocking</Link></li>
-        <li><Link to="/miss" activeClassName="active">Miss</Link></li>
-        <li><Link to="/query-params" activeClassName="active">Query Params</Link></li>
-        <li><Link to="/recursive-paths" activeClassName="active">Recursive Paths</Link></li>
-        <li><Link to="/protected" activeClassName="active">Protected</Link></li>
+        <li><NavLink exact={true} to="/" activeClassName="active">Home</NavLink></li>
+        <li><NavLink to="/basic-routing" activeClassName="active">BasicRouting</NavLink></li>
+        <li><NavLink to="/blocking" activeClassName="active">Blocking</NavLink></li>
+        <li><NavLink to="/miss" activeClassName="active">Miss</NavLink></li>
+        <li><NavLink to="/query-params" activeClassName="active">Query Params</NavLink></li>
+        <li><NavLink to="/recursive-paths" activeClassName="active">Recursive Paths</NavLink></li>
+        <li><NavLink to="/protected" activeClassName="active">Protected</NavLink></li>
       </ul>
-      <Match exactly pattern="/" component={Home} />
-      <Match pattern="/basic-routing" component={BasicRouting} />
-      <Match pattern="/blocking" component={Blocking} />
-      <Match pattern="/miss" component={Miss} />
-      <Match pattern="/query-params" component={QueryParams} />
-      <Match pattern="/recursive-paths" component={Recursive} />
-      <Match pattern="/login" component={Login} />
-      <Match pattern="/protected" render={() => (fakeAuth.isAuthenticated ? (<Protected />) : (<Redirect to={{pathname: '/login',state: { from: '/protected'}
-}}/>))}/>
+
+      <Switch>
+          <Route path="/" component={Home} exact={true} />
+        <Route path="/basic-routing" component={BasicRouting} />
+        <Route path="/blocking" component={Blocking} />
+        <Route path="/miss" component={Miss} />
+        <Route path="/query-params" component={QueryParams} />
+        <Route path="/recursive-paths" component={Recursive} />
+        <Route path="/login" component={Login} />
+        <Route path="/protected" component={() => (fakeAuth.isAuthenticated ? (<Protected />) : (<Redirect to={{pathname: '/login',state: { from: '/protected'}
+        }}/>))} />
+        <Route component={NoMatch}/>
+      </Switch>
     </div>
-   </BrowserRouter>
+  </BrowserRouter>
   , document.getElementById('main'))
-
-
-

@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { Match, Link } from 'react-router'
+import { Switch, Route, Link } from 'react-router-dom'
 import { Content } from '../Components'
 
 export default class QueryParams extends Component {
   render() {
-  	const { location, pattern, pathname, isExact } = this.props
+  	const { location, pattern, match, isExact } = this.props
     return (
       <div>
       <h1>Reading the query parameters.</h1>
@@ -12,19 +12,21 @@ export default class QueryParams extends Component {
       <div className="leftNavi">
       	<ul>
       		<li><Link to={{
-              pathname: pathname+'/level1',
-              query: { abc: 23 }
-            }} activeClassName="active">Level 1</Link></li>
+              pathname: match.url+'/level1',
+              search: '?abc=23'
+            }} className="active">Level 1</Link></li>
       		<li><Link to={{
-              pathname: pathname+'/level2',
-              query: { abc: 2, xyz: 4 }
-            }} activeClassName="active">Level 2</Link></li>
-      		<li><Link to={pathname+'/level3?xyz=HavingFun'} activeClassName="active">Level 3</Link></li>
+              pathname: match.url+'/level2',
+              search: '?abc=2&xyz=4'
+            }} className="active">Level 2</Link></li>
+      		<li><Link to={match.url+'/level3?xyz=HavingFun'} className="active">Level 3</Link></li>
       	</ul>
       </div>
       <div className="rightContent">
       	<p>Second Level Content will appear here:</p>
-      	<Match pattern={`${pathname}/:level`} component={Content}/>
+        <Switch>
+      	  <Route path={`${match.url}/:level`} component={Content}/>
+        </Switch>
       </div>  
       </div>
     )

@@ -18,31 +18,31 @@ var config = {
   },
 
   resolve: {
-    root: path.resolve(__dirname),
-    extensions: ['', '.js']
+    extensions: ['.js']
   },
 
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
       "process.env": {
         BROWSER: JSON.stringify(true)
       }
-    }),
-    new ExtractTextPlugin("[name].css")
+    })
   ],
 
   module: {
     loaders: [
       {
         test: /\.js$/,
-        loaders: ['react-hot', 'babel'],
+        loaders: ['react-hot-loader', 'babel-loader'],
         include: [path.join(__dirname, 'src')]
       },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract('style-loader','css-loader')
+        loader: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: "css-loader"
+        })
       }
     ]
   }

@@ -18,7 +18,6 @@ var config = {
   },
 
   resolve: {
-    root: path.resolve(__dirname),
     extensions: ['', '.js']
   },
 

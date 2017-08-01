@@ -1,24 +1,29 @@
 import React, { Component } from 'react'
-import { BrowserRouter, Match, Link } from 'react-router'
+import { Switch, Route, NavLink } from 'react-router-dom'
 import { routes } from '../router-config'
+import { NoMatch } from '../Components'
 
 export default class BasicRouting extends Component {
   render() {
-    <div>
-      <ul>
-        <li><Link to="/" activeOnlyWhenExact activeClassName="active">Home</Link></li>
-        <li><Link to="/basic-routing" activeClassName="active">BasicRouting</Link></li>
-        <li><Link to="/blocking" activeClassName="active">Blocking</Link></li>
-        <li><Link to="/miss" activeClassName="active">Miss</Link></li>
-        <li><Link to="/query-params" activeClassName="active">Query Params</Link></li>
-        <li><Link to="/recursive-paths" activeClassName="active">Recursive Paths</Link></li>
-        <li><Link to="/protected" activeClassName="active">Protected</Link></li>
-      </ul>
-      
-      {routes.map((route,index) => (
-        <Match key={index} pattern={route.pattern} component={route.component} exactly={route.exactly} />
-      ))}
+    return (
+      <div>
+        <ul>
+          <li><NavLink to="/" activeOnlyWhenExact activeClassName="active">Home</NavLink></li>
+          <li><NavLink to="/basic-routing" activeClassName="active">BasicRouting</NavLink></li>
+          <li><NavLink to="/blocking" activeClassName="active">Blocking</NavLink></li>
+          <li><NavLink to="/miss" activeClassName="active">Miss</NavLink></li>
+          <li><NavLink to="/query-params" activeClassName="active">Query Params</NavLink></li>
+          <li><NavLink to="/recursive-paths" activeClassName="active">Recursive Paths</NavLink></li>
+          <li><NavLink to="/protected" activeClassName="active">Protected</NavLink></li>
+        </ul>
 
-    </div>
+        <Switch>
+          {routes.map((route,index) => (
+            <Route key={index} path={route.path} component={route.component} exact={route.exact} />
+            ))}
+          <Route component={NoMatch}/>
+        </Switch>
+      </div>
+    )
   }
 }

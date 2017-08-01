@@ -5,36 +5,36 @@ import fakeAuth from './Auth'
 
 export const routes = [
    {
-      'pattern':'/',
+      'path':'/',
       'component': Home,
-      'exactly': true
+      'exact': true
    },
    {
-      'pattern':'/basic-routing',
+      'path':'/basic-routing',
       'component': BasicRouting
    },
    {
-      'pattern':'/blocking',
+      'path':'/blocking',
       'component': Blocking
    },
    {
-      'pattern':'/miss',
+      'path':'/miss',
       'component': Miss
    },
    {
-      'pattern':'/query-params',
+      'path':'/query-params',
       'component': QueryParams
    },
    {
-      'pattern':'/recursive-paths',
+      'path':'/recursive-paths',
       'component': Recursive
    },
    {
-      'pattern':'/login',
+      'path':'/login',
       'component': Login
    },
    {
-      'pattern':'/protected',
+      'path':'/protected',
       'component': () => (fakeAuth.isAuthenticated ? (<Protected />) : (<Redirect to={{pathname: '/login',state: { from: '/protected'}
 }}/>))
    }

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router'
 import fakeAuth from '../Auth'
-import { Content } from '../Components'
 
 export default class ProtectedPage extends Component {
   state = { signedOut: false}
