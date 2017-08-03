@@ -1,13 +1,13 @@
 import ReactDOM from 'react-dom'
 import React from 'react'
 import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom'
-import { Home, BasicRouting } from './Components'
+import { Home, BasicRouting, Blocking } from './Components'
 
 ReactDOM.render(
   <BrowserRouter>
     <div>
       <ul>
-        <li><NavLink exact={true} to="/" activeClassName="active">Home</NavLink></li>
+        <li><NavLink to="/" activeClassName="active">Home</NavLink></li>
         <li><NavLink to="/basic-routing" activeClassName="active">BasicRouting</NavLink></li>
       </ul>
 

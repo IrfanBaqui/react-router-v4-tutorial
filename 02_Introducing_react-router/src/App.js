@@ -7,12 +7,10 @@ ReactDOM.render(
   <BrowserRouter>
     <div>
       <ul>
-        <li><NavLink exact={true} to="/" activeClassName="active">Home</NavLink></li>
+        <li><NavLink to="/" activeClassName="active">Home</NavLink></li>
       </ul>
 
-      <Switch>
-        <Route path="/" component={Home} exact={true} />
-      </Switch>
+      <Route path="/" component={Home} exact={true} />
     </div>
   </BrowserRouter>
   , document.getElementById('main'))

@@ -9,7 +9,7 @@ ReactDOM.render(
   <BrowserRouter>
     <div>
       <ul>
-        <li><NavLink exact={true} to="/" activeClassName="active">Home</NavLink></li>
+        <li><NavLink to="/" activeClassName="active">Home</NavLink></li>
         <li><NavLink to="/basic-routing" activeClassName="active">BasicRouting</NavLink></li>
         <li><NavLink to="/blocking" activeClassName="active">Blocking</NavLink></li>
         <li><NavLink to="/miss" activeClassName="active">Miss</NavLink></li>
