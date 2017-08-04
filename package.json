@@ -2,6 +2,17 @@
   "name": "react-router-v4",
   "version": "2.0.0",
   "description": "A step by step react-router v4 tutorial - extensive and easy to follow",
+  "keywords": [
+    "react",
+    "router",
+    "react router",
+    "javascript",
+    "UI",
+    "facebook",
+    "user interface",
+    "html",
+    "css"
+  ],
   "scripts": {
     "start": "echo cd into one of the directories to start"
   },
